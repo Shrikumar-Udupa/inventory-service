@@ -7,6 +7,7 @@ on:
     types: [opened, synchronize, reopened]
 jobs:
   build:
+    steps:
       -
         name: Checkout
         uses: actions/checkout@v4
@@ -28,6 +29,7 @@ jobs:
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
       -
         name: Build docker image using dockerfile and push to dockerhub
         uses: docker/build-push-action@v5
@@ -35,4 +37,3 @@ jobs:
           context: .
           file: ./Docker/Dockerfile
           push: true
-          tags: shrikumarudupa/inventory-service:latest
