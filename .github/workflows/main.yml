@@ -6,7 +6,9 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+
   build:
+  runs-on: ubuntu-latest
     steps:
       -
         name: Checkout
