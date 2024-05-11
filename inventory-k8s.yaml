@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: inventory
+  name: inventory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: inventory
+    spec:
+      containers:
+      - image: shrikumarudupa/inventory-service
+        name: inventory-service
+        ports:
+          - containerPort: 8092
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: inventory
+  name: inventory
+spec:
+  ports:
+  - port: 8092
+    protocol: TCP
+    targetPort: 8092
+  selector:
+    app: inventory
+  type: NodePort
+status:
+  loadBalancer: {}
